@@ -1,0 +1,10 @@
+<h1> Welcome Naresh to ruby on rails</h1>
+<% if @var > 10 %>
+<%= @var %>
+<% end %>
+<%= link_to "Firsts Way" , second_path %><br>
+<%= link_to "Second Way", {:controller => 'students' , :action => 'second'} %></br>
+<%= link_to "Value", {:controller => 'students' , :action => 'second', :id => 4} %></br>
+
+ <%= link_to "Gmail ", "http://www.gmail.com/", data: { confirm: "Are you sure?" } %>
+

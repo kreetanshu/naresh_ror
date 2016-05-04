@@ -1,0 +1,45 @@
+
+<h3> This is New post</h3>
+<%= form_for @stud do |f| %>
+ <% if @stud.errors.any? %>
+ <div id="error_explanation">
+      <h2><%= pluralize(@stud.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+      <% @stud.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
+<div class="row">
+ <div class="col-md-6 col-md-offset-3">
+	<p> 
+		<%= f.label :name %>
+		<%= f.text_field :name, class: 'form-control' %>
+    <%= f.label :age%> 
+    <%= f.number_field :age , class: 'form-control'%>
+    <%= f.label :dob%> 
+    <%= f.date_field :dob , class: 'form-control' %>
+    <%= f.label :above18 %>
+    <%= f.select :above18, ['True', 'False'] , class: 'form-control' %><br>
+    <%= f.label :department_id %> 
+    <%= f.select :department_id, Department.all.collect {|x| [x.domain, x.id]}, {:include_blank => "Select One" } , class: 'form-control'%>
+    <%= f.label :desc %>
+    <%= f.text_area :desc , class: 'form-control'%>
+
+	</p>
+
+    <p>
+      <div id="subbut">
+    	<%= f.submit "Add Post", class: "btn btn-primary" %>
+    </div>
+    </p>
+
+    <% end %>
+    <br>
+    <%= link_to "Home", students_path %>
+</div>
+</div>
+

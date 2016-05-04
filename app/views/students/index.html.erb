@@ -1,0 +1,42 @@
+This is our index page
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      
+      <th>Date of Birth</th>
+      <th>Above18</th>
+       <th>Department</th>
+      <th>Created At</th>
+       <th>Modify</th>
+       <th>Remove</th>
+       <% if checkadmin %>
+       <th>Status</th>
+       <%end%>
+       
+    </tr>
+  </thead>
+  <tbody>
+<% @stud.each do |row| %>
+<tr>
+  <td> <%= link_to row.name ,{:controller => 'students' , :action => 'show', :id => row.id} %></td>
+<td><%=  row.age %></td>
+<td><%=  row.dob %></td>
+<td><%=  row.above18 %></td>
+<td><%=  row.department.domain %></td>
+<td><small><%= row.created_at.strftime("%b %d. %Y") %></small></br></td>
+<td><%= link_to "Edit", {:controller => 'students' , :action => 'edit', :id => row.id} %></td>
+<td><%= link_to 'Destroy', row, data:{confirm: 'Are you sure to delete'} , method: :delete %></td>
+<td><% if checkadmin %>
+<%=  row.status %>|<%= link_to 'Change', {:controller => 'students' , :action => 'changestatus', :stid => row.id} %>
+<%end%>
+</td>
+
+</tr>
+<% end %>
+  </tbody>
+    </table><br>
+    <%= link_to "Add Student", new_student_path %>
+    <%= link_to "Add Departments", new_department_path %>
